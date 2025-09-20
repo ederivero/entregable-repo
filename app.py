@@ -1,6 +1,8 @@
 from flask import Flask, request
 from psycopg import connect
 from os import environ
+from dotenv import load_dotenv
+load_dotenv()
 
 conexion = connect(environ.get('DATABASE_URL'))
 app = Flask(__name__)
@@ -13,6 +15,7 @@ def crearTablas():
                    nombre TEXT NOT NULL, 
                    fecha_entrega TIMESTAMP)''')
     conexion.commit()
+    print('TABLES CREATED')
     cursor.close()
 
 @app.route('/subir-entregable', methods=['POST'])
@@ -29,4 +32,5 @@ def subirEntregable():
 
 
 if (__name__ =='__main__'):
+    crearTablas()
     app.run(debug=True)
