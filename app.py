@@ -31,6 +31,6 @@ def subirEntregable():
     }, 201
 
 
+crearTablas()
 if (__name__ =='__main__'):
-    crearTablas()
     app.run(debug=True)
